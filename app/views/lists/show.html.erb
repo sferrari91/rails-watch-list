@@ -1,0 +1,39 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1585647347384-2593bc35786b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
+  <div class="container">
+    <h1> <%= @list.name %></h1>
+  </div>
+</div>
+<br>
+<div class="bookmarkgrid mx-4">
+  <div class="container mb-3">
+    <% @list.bookmarks.each do |bookmark| %>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+        <img src="<%= bookmark.movie.poster_url%>" alt="" class="card-img">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= bookmark.movie.title %></h5>
+            <p class="card-text"> <%= bookmark.movie.overview %></p>
+            <p class="card-text"><small class="text-muted"><%= bookmark.comment %></small></p>
+            <p><%= link_to "Delete this bookmark", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<br>
+
+<h3>Add a new movie</h3>
+
+<p><%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie %>
+  <%= f.input :comment %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+</p>
+
+<%= link_to "Delete this list", list_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-light" %>

@@ -1,0 +1,20 @@
+
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80);">
+  <div class="container">
+    <h1>Create your own <strong>movie list</strong></h1>
+    <%= link_to "Create a new list", new_list_path, class: "btn btn-gradient"%>
+  </div>
+</div>
+<br>
+
+
+<div class="moviegrid mx-4">
+    <% @lists.each do |list|  %>
+      <div class="card-category moviechild" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)">
+        <%= link_to "#{list.name}", list_path(list) %>
+      </div>
+    <% end %>
+</div>
+
+
